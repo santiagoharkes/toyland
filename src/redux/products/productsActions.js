@@ -30,7 +30,17 @@ export const fetchProducts = () => {
         "https://amiiboapi.com/api/amiibo/?amiiboSeries=0x00"
       );
 
-      dispatch(fetchProductsSuccess(fetchedProducts.data.amiibo));
+      const productsWithPrice = fetchedProducts.data.amiibo.map((product) => {
+        const randomPrice =
+          Math.floor(Math.random() * (2000 - 100) + 100) / 100;
+
+        return {
+          ...product,
+          price: randomPrice,
+        };
+      });
+
+      dispatch(fetchProductsSuccess(productsWithPrice));
     } catch (error) {
       dispatch(fetchProductsFail(error));
     }

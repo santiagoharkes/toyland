@@ -1,8 +1,13 @@
-import * as cartActions from "./cartConstants";
-import { addItemToCart, removeItemsToCart, sumItems } from "./cartUtils";
+import * as cartConstants from "./cartConstants";
+import {
+  addItemToCart,
+  deleteItemFromCart,
+  removeItemFromCart,
+  sumItems,
+} from "./cartUtils";
 
 const storage = localStorage.getItem("mercat-cart")
-  ? JSON.parse(localStorage.getItem("cart"))
+  ? JSON.parse(localStorage.getItem("mercat-cart"))
   : [];
 
 const INITIAL_STATE = {
@@ -13,28 +18,35 @@ const INITIAL_STATE = {
 
 const cartReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case cartActions.TOGGLE_CART:
+    case cartConstants.TOGGLE_CART:
       return {
         ...state,
         showCart: !state.showCart,
       };
 
-    case cartActions.ADD_ITEM:
+    case cartConstants.ADD_ITEM:
       return {
         ...state,
         ...addItemToCart(state.cartItems, action.payload),
       };
 
-    case cartActions.REMOVE_ITEM:
+    case cartConstants.REMOVE_ITEM:
       return {
         ...state,
-        ...removeItemsToCart(state.cartItems, action.payload),
+        ...removeItemFromCart(state.cartItems, action.payload),
       };
 
-    case cartActions.CLEAR_CART:
+    case cartConstants.DELETE_ITEM:
       return {
         ...state,
-        cartItems: [],
+        ...deleteItemFromCart(state.cartItems, action.payload),
+      };
+
+    case cartConstants.CLEAR_CART:
+      localStorage.removeItem("mercat-cart");
+
+      return {
+        ...INITIAL_STATE,
       };
     default:
       return state;

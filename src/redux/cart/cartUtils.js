@@ -1,6 +1,6 @@
 const setStorage = (cartItems) => {
   localStorage.setItem(
-    "cart",
+    "mercat-cart",
     JSON.stringify(cartItems.length > 0 ? cartItems : [])
   );
 };
@@ -40,7 +40,7 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
   };
 };
 
-export const removeItemsToCart = (cartItems, cartItemToRemove) => {
+export const removeItemFromCart = (cartItems, cartItemToRemove) => {
   const existingCartItem = cartItems.find(
     (cartItem) => cartItem.head === cartItemToRemove.head
   );
@@ -53,6 +53,17 @@ export const removeItemsToCart = (cartItems, cartItemToRemove) => {
             ? { ...cartItem, quantity: cartItem.quantity - 1 }
             : cartItem;
         });
+
+  return {
+    cartItems: newCartItems,
+    ...sumItems(newCartItems),
+  };
+};
+
+export const deleteItemFromCart = (cartItems, cartItemToDelete) => {
+  const newCartItems = cartItems.filter(
+    (cartItem) => cartItem.head !== cartItemToDelete.head
+  );
 
   return {
     cartItems: newCartItems,
