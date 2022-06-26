@@ -18,7 +18,7 @@ export const ProductsContentStyled = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 30px 0;
+  padding: 30px 20px;
 `;
 
 export const ProductCardsContainerStyled = styled.div`

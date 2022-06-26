@@ -29,7 +29,7 @@ function Hero() {
         <Button onClick={() => navigate("products")}>Explorar más</Button>
       </HeroTitleContainerSyled>
       <HeroImageContainerStyled>
-        <HeroImageStyled src={HeroImage} />
+        <HeroImageStyled src={HeroImage} alt="Mario Bros saltando" />
       </HeroImageContainerStyled>
     </HeroContainerStyled>
   );

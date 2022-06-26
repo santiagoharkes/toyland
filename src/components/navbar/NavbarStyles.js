@@ -34,10 +34,11 @@ export const NavbarListStyled = styled.ul`
   display: flex;
   justify-content: space-around;
   gap: 30px;
+  color: ${(props) => props.theme.colors["violet"]};
 `;
 
 export const NavbarItemStyled = styled.li`
-  color: ${(props) => props.theme.colors["orange"]};
+  color: ${(props) => props.theme.colors["violet"]};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,7 +48,7 @@ export const NavbarItemStyled = styled.li`
   position: relative;
 
   &:hover {
-    color: ${(props) => props.theme.colors["violet"]};
+    color: ${(props) => props.theme.colors["orange"]};
   }
 `;
 
